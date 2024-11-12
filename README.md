@@ -1,5 +1,5 @@
 # Minimum Width Calculation 
-This repository provides tools to calculate the minimum width between buildings and roads in Geographic Information Systems (GIS), focusing on understanding and minimizing wildlife disturbance. Most traditional GIS algorithms compute the nearest distance to features, often neglecting the width between them. To achieve a more comprehensive view, this project calculates widths to help guide minimum disturbance levels necessary for functional wildlife use.
+This repository provides tools to calculate the minimum width between buildings and roads in Geographic Information Systems (GIS), focusing on understanding and minimizing wildlife disturbance. Most traditional GIS algorithms compute the nearest distance to features, often neglecting the width between them. To achieve a more comprehensive view, this project calculates widths to help guide minimum disturbance levels necessary for wildlife use.
 
 These scripts complement the paper available at [DOI HERE] and are designed to streamline the process of calculating critical widths in a study area.
 ## Steps

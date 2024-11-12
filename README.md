@@ -9,11 +9,11 @@ Use the *CreateFishnet.pynb* notebook to create a fishnet grid covering the desi
 
 2. **Calculate Widths**<br />
 
-Run through the *CreateWidths.pynb* script. This script iterates through the points in the fishnet grid, calculating and storing results in a structured data frame.<br />
+Use the *CreateWidths.pynb* notebook to calculate minimum distances between features. This script iterates through the points in the fishnet grid, calculating and storing distances in a structured data frame.<br />
 ### Script Overview
-The CreateWidths script performs the following steps:
+The *CreateWidths* script performs the following steps:
 1. Point and Angle Iteration: Iterates through each point in the fishnet point layer at specified angles (5-degree increments), creating lines that extend from each point up to a maximum defined distance.
-2. Intersection Check: For each line, it checks for the closest intersection with any polygons (e.g., buildings or roads) and calculates the distance from the intersection back to the originating point.
+2. Intersection Check: For each line, it checks for the closest intersection with polygons or lines uploaded (e.g., buildings or roads) and calculates the distance from the intersection back to the originating point.
 3. Angle and Distance Storage: Stores the angle and calculated distance for each iteration in a data frame, providing a detailed log of the measured distances for each angle.
 4. Opposite Angle Calculation: For each angle-distance pair, it calculates the distance for the opposite angle and stores these values in the data frame.
 5. Minimum Distance Selection: Groups the data by point ID and selects the minimum total distance for each point, representing the narrowest width that could potentially impact wildlife movement.

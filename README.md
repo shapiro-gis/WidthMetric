@@ -1,16 +1,19 @@
 # Minimum Width Calculation 
-This repository provides tools to calculate the minimum width between buildings and roads in Geographic Information Systems (GIS), focusing on understanding and minimizing wildlife disturbance. Most traditional GIS algorithms compute the nearest distance to features, often neglecting the width between them. To achieve a more comprehensive view, this project calculates widths to help guide minimum disturbance levels necessary for wildlife use.
+This repository provides tools to calculate the minimum width between buildings and roads, focusing on understanding and minimizing wildlife disturbance. Most traditional GIS algorithms compute the nearest distance to features, often neglecting the width between them. To achieve a more comprehensive view, this project calculates widths to help guide minimum disturbance levels necessary for wildlife use. These python scripts complement the paper available at [DOI HERE] and are designed to streamline the process of calculating critical widths in a study area. 
 
-These scripts complement the paper available at [DOI HERE] and are designed to streamline the process of calculating critical widths in a study area.
+## Sample Data
+
+This repository includes a *Sample_Data* folder containing example datasets for testing and demonstrating the scripts. These datasets can be used to run the notebooks and validate the output without needing additional data sources. The sample data helps in understanding the workflow and expected results for the minimum width calculation between features.
+
 ## Steps
 1. **Generate Fishnet Grid**<br />
    
-Use the *CreateFishnet.pynb* notebook to create a fishnet grid covering the desired study extent. This grid will serve as the foundation for calculating widths.<br />
+Use the *CreateFishnet.pynb* notebook to create a 30m fishnet grid covering the desired study extent. This grid will serve as the foundation for calculating widths.<br />
 
 2. **Calculate Widths**<br />
 
 Use the *CreateWidths.pynb* notebook to calculate minimum distances between features. This script iterates through the points in the fishnet grid, calculating and storing distances in a structured data frame.<br />
-### Script Overview
+
 The *CreateWidths* script performs the following steps:
 1. Point and Angle Iteration: Iterates through each point in the fishnet point layer at specified angles (5-degree increments), creating lines that extend from each point up to a maximum defined distance.
 2. Intersection Check: For each line, it checks for the closest intersection with polygons or lines uploaded (e.g., buildings or roads) and calculates the distance from the intersection back to the originating point.

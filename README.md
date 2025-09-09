@@ -3,7 +3,7 @@ This repository provides the tools to calculate the minimum width between two GI
 
 ## Sample Data
 
-This repository includes a *Sample_Data* folder containing example datasets for testing and demonstrating the scripts. These datasets can be used to run the below width function and validate the output without needing additional data sources. The sample data helps in understanding the workflow and expected results for the minimum width calculation between features.
+This repository includes a *Sample Data* folder containing example datasets for testing and demonstrating the scripts. These datasets can be used to run the below width function and validate the output without needing additional data sources. The sample data helps in understanding the workflow and expected results for the minimum width calculation between features.
 
 ## Scripts
 1. **Width Function**<br />

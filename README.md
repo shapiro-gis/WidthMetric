@@ -3,26 +3,30 @@ This repository provides tools to calculate the minimum width between buildings 
 
 ## Sample Data
 
-This repository includes a *Sample_Data* folder containing example datasets for testing and demonstrating the scripts. These datasets can be used to run the notebooks and validate the output without needing additional data sources. The sample data helps in understanding the workflow and expected results for the minimum width calculation between features.
+This repository includes a *Sample_Data* folder containing example datasets for testing and demonstrating the scripts. These datasets can be used to run the below width function and validate the output without needing additional data sources. The sample data helps in understanding the workflow and expected results for the minimum width calculation between features.
 
-## Steps
-1. **Generate Fishnet Grid**<br />
+## Scripts
+1. **Width Function**<br />
    
-Use the *CreateFishnet.pynb* notebook to create a 30m fishnet grid covering the desired study extent. This grid will serve as the foundation for calculating widths.<br />
+Source the R script *calculate_width_function.R* for the width function. The output of this function will be a spatial raster, see below for details.<br />
 
-2. **Calculate Widths**<br />
+2. **Estimate Width From Sample Data**<br />
 
-Use the *CreateWidths.pynb* notebook to calculate minimum distances between features. This script iterates through the points in the fishnet grid, calculating and storing distances in a structured data frame.<br />
+The R script *example_estimate_width.R* includes the steps to use the associated Sample_Data with the width function to generate a spatial raster where each cell is the narrowest width between any two buildings.<br />
 
-The *CreateWidths* script performs the following steps:
-1. Point and Angle Iteration: Iterates through each point in the fishnet point layer at specified angles (5-degree increments), creating lines that extend from each point up to a maximum defined distance.
-2. Intersection Check: For each line, it checks for the closest intersection with polygons or lines uploaded (e.g., buildings or roads) and calculates the distance from the intersection back to the originating point.
-3. Angle and Distance Storage: Stores the angle and calculated distance for each iteration in a data frame, providing a detailed log of the measured distances for each angle.
-4. Opposite Angle Calculation: For each angle-distance pair, it calculates the distance for the opposite angle and stores these values in the data frame.
-5. Minimum Distance Selection: Groups the data by point ID and selects the minimum total distance for each point, representing the narrowest width that could potentially impact wildlife movement.
-### Output
+## Details on Estimating Width
+The *calculate_width_function.R* script performs the following steps:
+1. Crop features within the given area of interest: In this case, the features of interest are building polygons.
+2. Create Intersects Matrix: For every feature, identify every other feature within a threshold distance (in this case, 10 km) of one another. This intersection matrix will be used to estimate the distance between each feature
+3. Draw Lines: For every feature, draw the nearest line to every other feature within a threshold distance (10 km). Include the length of each line as well. 
+4. Convert to Raster: rasterize the area of interest where the value of each cell is the shortest (non-zero) length of each line. The shortest non-zero line at a given location is the width between buildings. 
+5. Return Raster: Output raster will be written out to the provided write directory.
+
+### Parameters Needed for the Width Function
 The output of the *CreateWidths* script is a data frame that includes:
-- Point ID
-- Angles and corresponding distances
-- Opposite angles and distances
-- Minimum total distances for each point
+- Area of Interest: Should be a polygon
+- Features: the GIS features between which to estimate width
+- Maximum Distance: beyond this threshold, do not estimate width between two features
+- The desired resolution of the output raster (in m2)
+- The folder where the raster should be written out to
+- The number of cores to use, if running in parallel
